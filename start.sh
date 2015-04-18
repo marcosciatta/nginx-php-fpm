@@ -8,9 +8,9 @@ echo -e "Host *\n\tStrictHostKeyChecking no\n" >> /root/.ssh/config
 if [ ! -z "$GIT_REPO" ]; then
   rm /usr/share/nginx/html/*
   if [ ! -z "$GIT_BRANCH" ]; then
-    git clone -b $GIT_BRANCH $GIT_REPO /usr/share/nginx/html/
+    git clone -u $GIT_TOKEN:x-oauth-basic -b $GIT_BRANCH $GIT_REPO /usr/share/nginx/html/
   else
-    git clone $GIT_REPO /usr/share/nginx/html/
+    git clone -u $GIT_TOKEN:x-oauth-basic $GIT_REPO /usr/share/nginx/html/
   fi
   chown -Rf nginx.nginx /usr/share/nginx/*
 fi
