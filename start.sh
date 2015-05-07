@@ -33,3 +33,5 @@ do
 
 # Start supervisord and services
 /usr/local/bin/supervisord -n
+
+(cd /usr/share/nginx/html/; curl -sS https://getcomposer.org/installer | php; php composer.phar install)
