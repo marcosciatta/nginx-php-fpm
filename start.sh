@@ -13,6 +13,7 @@ if [ ! -z "$GIT_REPO" ]; then
     git clone -u $GIT_TOKEN:x-oauth-basic $GIT_REPO /usr/share/nginx/html/
   fi
   chown -Rf nginx.nginx /usr/share/nginx/*
+  composer --no-interaction --working-dir="/usr/share/nginx/html/" install > composer.log
 fi
 
 # Tweak nginx to match the workers to cpu's
@@ -33,5 +34,3 @@ do
 
 # Start supervisord and services
 /usr/local/bin/supervisord -n
-
-(cd /usr/share/nginx/html/; curl -sS https://getcomposer.org/installer | php; php composer.phar install)
